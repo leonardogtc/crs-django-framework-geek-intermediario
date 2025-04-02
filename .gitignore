@@ -1,1 +1,24 @@
+<<<<<<< HEAD
 venv
+=======
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+db.sqlite3
+
+
+# Exclude machine-specific vs code settings
+.vscode/
+>>>>>>> a9051c0 (Base do projeto)
