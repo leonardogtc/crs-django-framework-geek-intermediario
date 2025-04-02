@@ -4,7 +4,6 @@ source venv/bin/activate
 pip install pip setuptools wheel --upgrade
 pip install django
 
-
 => pip install gunicorn
 (O Gunicorn é um servidor WSGI para Python que melhora o desempenho e a escalabilidade de aplicações Django. Vamos instalá-lo e configurá-lo corretamente no seu ambiente.)
 
