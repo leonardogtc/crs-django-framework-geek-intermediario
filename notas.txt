@@ -1,0 +1,94 @@
+## Comandos:
+python3 -m venv venv
+source venv/bin/activate
+pip install pip setuptools wheel --upgrade
+pip install django
+
+
+=> pip install gunicorn
+(O Gunicorn é um servidor WSGI para Python que melhora o desempenho e a escalabilidade de aplicações Django. Vamos instalá-lo e configurá-lo corretamente no seu ambiente.)
+
+=> pip install whitenoise
+A biblioteca WhiteNoise é usada no Django para servir arquivos estáticos (CSS, JavaScript, imagens, etc.) de maneira eficiente sem precisar de um servidor web separado, como Nginx ou Apache.
+
+📌 Principais Benefícios do WhiteNoise
+
+1. Elimina a necessidade de um servidor web separado → O Django pode servir arquivos estáticos diretamente.
+2. Cache eficiente → Garante que arquivos estáticos sejam armazenados no cache corretamente para melhorar o desempenho.
+3. Compressão automática → Compacta arquivos estáticos usando Gzip e Brotli, reduzindo o tamanho dos arquivos e aumentando a velocidade de carregamento.
+4. Suporte a versões de arquivos → Renomeia os arquivos estáticos automaticamente para evitar problemas de cache.
+
+🛠 Como Instalar e Configurar no Django
+1️⃣ Instalar a Biblioteca
+No terminal, dentro do ambiente virtual, execute:
+- pip install whitenoise
+
+pip install whitenoise
+
+2️⃣ Configurar no settings.py
+Edite o arquivo settings.py e adicione WhiteNoise ao middleware:
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # Adicione esta linha relativa à biblioteca
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    ...
+]
+
+Ative o modo para arquivos estáticos:
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Habilita compactação e cache
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+3️⃣ Coletar Arquivos Estáticos
+Execute o comando:
+# python manage.py collectstatic
+
+Isso reúne todos os arquivos estáticos em staticfiles/, prontos para serem servidos pelo WhiteNoise.
+
+🔧 Como Funciona em Produção?
+Se você estiver usando o Gunicorn, o WhiteNoise serve os arquivos diretamente, sem precisar de Nginx.
+
+Caso use o Nginx, ele pode continuar servindo os arquivos estáticos, mas o WhiteNoise pode atuar como fallback.
+
+💡 Quando Usar WhiteNoise?
+✅ Ideal para pequenos e médios projetos sem Nginx.
+✅ Útil para deploys no Heroku, pois esse ambiente não possui um servidor web separado por padrão.
+✅ Funciona bem mesmo quando há Nginx, garantindo que o Django possa servir arquivos estáticos em qualquer situação.
+
+Se estiver usando Nginx como proxy reverso, ainda é uma boa prática servir arquivos estáticos diretamente pelo Nginx para maior eficiência. 🚀
+
+
+=> pip install django-bootstrap-v5 
+(A biblioteca django-bootstrap-v5 é um pacote que facilita a integração do Bootstrap 5 com projetos Django. Ela fornece tags de template e filtros para ajudar na renderização de formulários, botões e outros componentes Bootstrap de maneira mais simples e sem a necessidade de escrever HTML manualmente.)
+
+pip install django-stdimage
+pip install PyMysql
+
+##############################################
+# Bibliotecas para utilização do PostgreSQL: #
+##############################################
+
+Para usar o PostgreSQL no Python e no Django, você precisa instalar os seguintes pacotes:
+
+=> 1. Driver do PostgreSQL para Python
+O Django usa a biblioteca psycopg2 para se conectar ao PostgreSQL. Existem duas versões disponíveis:
+
+- psycopg2 → versão tradicional.
+- psycopg2-binary → versão empacotada, mais fácil de instalar, mas não recomendada para produção.
+
+Instale com:
+pip install psycopg2
+
+ou, para facilitar a instalação em ambiente de desenvolvimento:
+pip install psycopg2-binary
+
+###########################################
+# Criar um arquivo de pacotes instalados: #
+###########################################
+pip freeze > requirements.txt
+
+
+
+## Criando o projeto
