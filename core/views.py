@@ -15,18 +15,20 @@ def contato(request):
     # Verifica se o formulário foi enviado e é válido
     if request.method == "POST" and form.is_valid():
         # Armazenar em variáveis
-        nome = form.cleaned_data["nome"]
-        email = form.cleaned_data["email"]
-        assunto = form.cleaned_data["assunto"]
-        mensagem = form.cleaned_data["mensagem"]
+        # nome = form.cleaned_data["nome"]
+        # email = form.cleaned_data["email"]
+        # assunto = form.cleaned_data["assunto"]
+        # mensagem = form.cleaned_data["mensagem"]
 
         # Aqui você pode processar os dados do formulário
         # Por exemplo, enviar um e-mail ou salvar em um banco de dados
-        print("Formulário enviado com sucesso!")
-        print("Nome:", {nome})
-        print("Email:", {email})
-        print("Assunto:", {assunto})
-        print("Mensagem:", {mensagem})
+        # print("Formulário enviado com sucesso!")
+        # print("Nome:", {nome})
+        # print("Email:", {email})
+        # print("Assunto:", {assunto})
+        # print("Mensagem:", {mensagem})
+
+        form.send_mail()
 
         messages.success(request, "Mensagem enviada com sucesso!")
         form = ContatoForm()  # Limpa o formulário após o envio

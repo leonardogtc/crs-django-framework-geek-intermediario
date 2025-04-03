@@ -134,3 +134,19 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Configurações de um servidor de email:
+"""
+Essa configuração permite que o Django funcione como um servidor de email.
+Isso é útil para desenvolvimento e testes, pois os emails serão exibidos no console em vez de serem enviados.
+"""
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# SERVIDOR DE EMAIL UTILIZANDO OUTLOOK
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = "smtp-office365.com"
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = "leonardogtc@outlook.com"
+# EMAIL_HOST_PASSWORD = "L30n4rd0_GLO@"
+# DEFAULT_FROM_EMAIL = "leonardogtc@outlook.com"
