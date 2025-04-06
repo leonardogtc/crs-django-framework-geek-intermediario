@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
 
-from core.forms import ContatoForm
+from core.forms import ContatoForm, ProdutoModelForm
 
 
 def index(request):
@@ -44,4 +44,19 @@ def contato(request):
 
 
 def produto(request):
-    return render(request, "produto.html")
+    if request.method == "POST":
+        form = ProdutoModelForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Produto cadastrado com sucesso!")
+            form = ProdutoModelForm()
+        else:
+            messages.error(request, "Erro ao cadastrar o produto. Tente novamente.")
+    else:
+        form = ProdutoModelForm()
+    context = {
+        "form": form,
+    }
+
+    return render(request, "produto.html", context)

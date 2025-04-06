@@ -1,11 +1,19 @@
+{% load bootstrap5 %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
     <title>Index</title>
 </head>
 <body>
-    <h1>Página Index</h1>
+    <div class="container">
+        <div class="mt-5">
+            <h1>Página Index</h1>
+        </div>
+        {% bootstrap_messages %}
+    </div>
 </body>
 </html>

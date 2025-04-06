@@ -1,11 +1,37 @@
+{% load bootstrap5 %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produto</title>
+    {% bootstrap_css %}
 </head>
 <body>
-    <h1>Produto</h1>
+    <div class="container">
+        <div class="mt-5">
+            <h1>Página Produto</h1>
+        </div>
+        {% bootstrap_messages %}
+        <form action="{% url 'produto' %}" method="post" class="form" autocomplete="off" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+                {% bootstrap_button "Enviar Mensagem" button_type="submit" button_class="btn-primary" %}
+            {% endbuttons %}
+        </form>
+        <div class="mt-5">
+            <h2>Lista de Produtos</h2>
+            <ul>
+                {% for produto in produtos %}
+                    <li>{{ produto.nome }} - {{ produto.preco }}</li>
+                {% empty %}
+                    <li>Nenhum produto encontrado.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% bootstrap_messages %}
+    {% bootstrap_javascript %}
 </body>
 </html>

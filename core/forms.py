@@ -1,5 +1,6 @@
 from django import forms
 from django.core.mail.message import EmailMessage
+from .models import Produto
 
 
 class ContatoForm(forms.Form):
@@ -27,3 +28,16 @@ class ContatoForm(forms.Form):
             headers={"Reply-To": email},
         )
         mail.send()
+
+
+class ProdutoModelForm(forms.ModelForm):
+    class Meta:
+        model = Produto
+        fields = ["nome", "descricao", "preco", "estoque", "imagem"]
+        widgets = {
+            "nome": forms.TextInput(attrs={"class": "form-control"}),
+            "descricao": forms.Textarea(attrs={"class": "form-control"}),
+            "preco": forms.NumberInput(attrs={"class": "form-control"}),
+            "estoque": forms.NumberInput(attrs={"class": "form-control"}),
+            "imagem": forms.ClearableFileInput(attrs={"class": "form-control"}),
+        }
